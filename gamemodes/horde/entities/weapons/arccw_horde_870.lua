@@ -15,16 +15,18 @@ SWEP.PrintName = "Model 870"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_870.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_870.mdl"
 
-SWEP.Damage = 37
-SWEP.DamageMin = 15
+SWEP.Damage = 40
+SWEP.DamageMin = 0
 SWEP.Penetration = 10
-
+SWEP.RangeMin = 400 * 0.025
+SWEP.Range = 1200 * 0.025  -- GAME UNITS * 0.025 = METRES
 SWEP.NoLastCycle = true
 
-SWEP.Recoil = 1.5
+SWEP.Recoil = 2
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
-
+SWEP.SpeedMult = 1.075
+SWEP.SightedSpeedMult = 0.8
 SWEP.ShootVol = 75
 
 SWEP.ShootSound = ")arccw_go/sawedoff/sawedoff-1.wav"
@@ -36,23 +38,25 @@ SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true}
 
-local reloadMult = 0.75
+local reloadMult = 0.9
 
 SWEP.Animations = {
     ["fire"] = {
         Source = "shoot",
-        Time = 0.45,
-        MinProgress = 0.45,
+        Time = 0.3,
+        MinProgress = 0.28,
     },
     ["fire_iron"] = {
         Source = "idle",
-        Time = 0.45,
-        MinProgress = 0.45,
+        Time = 0.3,
+        MinProgress = 0.28,
     },
     ["cycle"] = {
         Source = "cycle",
         ShellEjectAt = 0.15,
         TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
+        Mult = 1.2,
+        MinProgress = 0.43
     },
     ["sgreload_start"] = {
         Source = "start_reload",
@@ -87,3 +91,7 @@ SWEP.Animations = {
         Mult = reloadMult,
     },
 }
+function SWEP:Hook_SelectInsertAnimation(wep, data)
+    data = {count = 2, anim = "sgreload_insert"}
+    return data
+end

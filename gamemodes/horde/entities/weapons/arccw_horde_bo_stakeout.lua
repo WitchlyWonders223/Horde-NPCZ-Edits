@@ -8,7 +8,7 @@ SWEP.Base = "arccw_base"
 
 SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
-SWEP.Slot = 3
+SWEP.Slot = 2
 
 SWEP.PrintName = "Stakeout"
 SWEP.Trivia_Class = "Shotgun"
@@ -35,7 +35,7 @@ SWEP.ShotgunReload = true
 SWEP.ManualAction = true
 
 SWEP.IsShotgun = true
-
+SWEP.Primary.Ammo = "buckshot"
 SWEP.Recoil = 3.5
 SWEP.RecoilSide = 1.5
 SWEP.RecoilRise = 0.1
@@ -141,7 +141,7 @@ SWEP.Attachments = {
         NoWM = true,
     },
 }
-
+local reloadMult = 0.85
 SWEP.Animations = {
     ["ready"] = {
         Source = "reg_draw_first",
@@ -155,36 +155,41 @@ SWEP.Animations = {
         Source = "reg_draw",
         SoundTable = {
             { s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
-        }
+        },
+       Mult = 0.5,
     },
     ["holster"] = {
-        Source = "reg_holster"
+        Source = "reg_holster",
+        Mult = 0.5,
     },
     ["sgreload_start"] = {
         Source = "reg_reload_start",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 10 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         RestoreAmmo = 1
     },
     ["sgreload_insert"] = {
         Source = "reg_reload_loop",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 2 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         TPAnimStartTime = 0.3
     },
     ["sgreload_finish"] = {
         Source = "reg_reload_end",
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 25 },
-        }
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = ( 10 / 25 ) * reloadMult },
+        },
+        Mult = reloadMult,
     },
     ["fire"] = {
         Source = "reg_fire",
@@ -200,7 +205,9 @@ SWEP.Animations = {
             { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
             { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 40 },
             { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 40 },
-        }
+        },
+        Mult = 1,
+        MinProgress = 0.45
     },
     ["cycle_iron"] = {
         Source = "reg_rechamber_ads",
@@ -208,7 +215,9 @@ SWEP.Animations = {
             { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
             { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 30 },
             { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 30 },
-        }
+        },
+        Mult = 1,
+        MinProgress = 0.45
     },
     ["idle"] = {
         Source = "reg_idle"
@@ -234,36 +243,41 @@ SWEP.Animations = {
         Source = "grip_draw",
         SoundTable = {
             { s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
-        }
+        },
+        Mult = 0.5,
     },
     ["holster_grip"] = {
-        Source = "grip_holster"
+        Source = "grip_holster",
+        Mult = 0.5,
     },
     ["sgreload_start_grip"] = {
         Source = "grip_reload_start",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 10 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         RestoreAmmo = 1
     },
     ["sgreload_insert_grip"] = {
         Source = "grip_reload_loop",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 2 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         TPAnimStartTime = 0.3
     },
     ["sgreload_finish_grip"] = {
         Source = "grip_reload_end",
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 25 },
-        }
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = ( 10 / 25 ) * reloadMult},
+        },
+        Mult = reloadMult,
     },
     ["fire_grip"] = {
         Source = "grip_fire",
@@ -279,7 +293,9 @@ SWEP.Animations = {
             { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
             { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 40 },
             { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 40 },
-        }
+        },
+        Mult = 1,
+        MinProgress = 0.45
     },
     ["cycle_iron_grip"] = {
         Source = "grip_rechamber_ads",
@@ -287,7 +303,9 @@ SWEP.Animations = {
             { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
             { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 30 },
             { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 30 },
-        }
+        },
+        Mult = 1,
+        MinProgress = 0.45
     },
     ["idle_grip"] = {
         Source = "grip_idle"
