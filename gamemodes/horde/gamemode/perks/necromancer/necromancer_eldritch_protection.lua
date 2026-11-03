@@ -1,6 +1,6 @@
 PERK.PrintName = "Eldritch Protection"
 PERK.Description =
-[[Summons return {2} of their Mind Cost to you upon death.
+[[Summons return {1} of their Mind Cost to you upon death.
 You take {2} reduced damage, this is doubled if your attacker has Frostbite.]]
 PERK.Icon = "materials/perks/necromancer/eldritch_protection.png"
 
