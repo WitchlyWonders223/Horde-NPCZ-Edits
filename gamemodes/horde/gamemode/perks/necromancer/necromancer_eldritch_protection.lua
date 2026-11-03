@@ -13,12 +13,6 @@ PERK.Params = {
 
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_MindRegeneration = function(ply, bonus)
-    if ply:Horde_GetPerk("necromancer_eldritch_protection") then
-        bonus.increase = bonus.increase + 0.2 * ply:Horde_GetSpectreCount(isUlt)
-    end
-end
-
 PERK.Hooks.Horde_OnRaiseSpectre = function(ply, properties)
     if ply:Horde_GetPerk("necromancer_eldritch_protection") then
         properties.eldritch_protection = true
